@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+  <title>Go Places</title>
+</head>
+<body>
+
+<style>
+body{
+  margin: 0px;
+  padding: 0px;
+}
+#googleMap{
+  box-shadow: 0px 5px 10px grey;
+}
+.dropdown{
+  font:  15px arial, sans-serif;
+  background-color: lightgrey;
+  padding: 5px;
+  margin: 0px;
+}
+select{
+  border-style: none;
+  background-color: white;
+  padding: 5px;
+}
+option{
+  border-style: none;
+  background-color: lightgreen;
+  padding: 5px;
+}
+form{
+  box-shadow: 0px 5px 10px grey;
+}
+</style>
+
+    <form class="dropdown">
+      <p>Choose a place you want to see!</p>
+  <select id="myChange" onChange="choosePlace()">
+    <option value="tokyo">Tokyo</option>
+    <option value="antarctica">Antarctica</option>
+    <option value="hawaii">Hawaii</option>
+    <option value="paris">Paris</option>
+  </select>
+</form>
+
+<br/>
+
+<div id="googleMap" style="width:100%;height:600px;background-color:blue;"></div>
+
+
+  <script>
+    function choosePlace(){
+      var x = document.getElementById("myChange").value;
+      var lat = 35.678282;
+      var lng = 139.757069;
+      if(x=="tokyo"){
+        lat = 35.678282;
+        lng = 139.757069;
+      }else if(x=="antarctica"){
+        lat = -82.862765;
+        lng = 134.998198;
+      }else if(x=="hawaii"){
+        lat = 21.289034;
+        lng = -157.841228;
+      }else if(x=="paris"){
+        lat = 48.8582535;
+        lng = 2.294627;
+      }
+      panorama = new google.maps.StreetViewPanorama(
+           document.getElementById('googleMap'),
+           {
+             position: {lat: (lat), lng: (lng)},
+             pov: {heading: 165, pitch: 0},
+             zoom: 1
+           });
+      }
+      </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBC3lNYMg2v0Wk-hCtSXqqOoLbUy85VAE&callback=choosePlace"></script>
+
+</div>
+</body>
